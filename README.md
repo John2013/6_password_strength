@@ -1,6 +1,19 @@
 # Password Strength Calculator
 
-[TODO. There will be project description]
+Returns strength rate of password
+
+# How to use
+
+```bash
+$ python password_strength.py
+```
+
+Example:
+```bash
+$ python password_strength.py
+Enter your password: wawsedWAWAD43434
+Password strength: 8/10
+```
 
 # Project Goals
 
