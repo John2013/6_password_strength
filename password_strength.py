@@ -33,10 +33,9 @@ def get_password_strength(password):
     ) * symbol_score
 
     # overall result
-    return (
-        sum([length_rate, digit_rate, uppercase_rate, lowercase_rate,
-             symbol_rate]) + min_score
-    )
+    return sum([length_rate, digit_rate, uppercase_rate, lowercase_rate,
+                symbol_rate]) + min_score
+
 
 
 if __name__ == '__main__':
