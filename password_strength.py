@@ -1,4 +1,5 @@
 import re
+from getpass import getpass
 
 
 def get_password_strength(password):
@@ -9,35 +10,31 @@ def get_password_strength(password):
     symbol_score = 2
     min_score = 1
 
-    # calculating the length
-    length_rate = int(len(password) >= 8) * length_score
+    password_min_length = 8
 
-    # searching for digits
-    digit_rate = int(re.search(r"\d", password) is not None) * digit_score
+    length_rate = (len(password) >= password_min_length) * length_score
 
-    # searching for uppercase
-    uppercase_rate = int(
-        re.search(r"[A-Z]", password) is not None
-    ) * uppercase_score
+    digit_rate = bool(re.search(r"\d", password)) * digit_score
 
-    # searching for lowercase
-    lowercase_rate = int(
-        re.search(r"[a-z]", password) is not None
-    ) * lowercase_score
+    uppercase_rate = bool(re.search(r"[A-Z]", password)) * uppercase_score
 
-    # searching for symbols
-    symbol_rate = int(
-        re.search(
-            r"[ !#$%&'()*+,-./[\\\]^_`{|}~" + r'"]', password
-        ) is not None
+    lowercase_rate = bool(re.search(r"[a-z]", password)) * lowercase_score
+
+    symbol_rate = bool(
+        re.search(r"[\s!#$%&'\"()*+,\-./\\[\]^_`{|}~]", password)
     ) * symbol_score
 
-    # overall result
-    return sum([length_rate, digit_rate, uppercase_rate, lowercase_rate,
-                symbol_rate]) + min_score
-
+    return sum(
+        [
+            length_rate,
+            digit_rate,
+            uppercase_rate,
+            lowercase_rate,
+            symbol_rate
+        ]
+    ) + min_score
 
 
 if __name__ == '__main__':
-    password = input("Enter your password: ")
+    password = getpass()
     print("Password strength: {}/10".format(get_password_strength(password)))

@@ -8,10 +8,12 @@ Returns strength rate of password
 $ python password_strength.py
 ```
 
+Password prompts with echo turned off
+
 Example:
 ```bash
 $ python password_strength.py
-Enter your password: wawsedWAWAD43434
+Password:
 Password strength: 8/10
 ```
 
