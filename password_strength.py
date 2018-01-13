@@ -1,6 +1,6 @@
 import re
-import string
 from getpass import getpass
+from string import punctuation
 
 
 def get_password_strength(password):
@@ -22,7 +22,7 @@ def get_password_strength(password):
     lowercase_rate = bool(re.search(r"[a-z]", password)) * lowercase_score
 
     symbol_rate = bool(
-        re.search(r'[' + string.punctuation + r']', password)
+        re.search(r"[{}]".format(punctuation), password)
     ) * symbol_score
 
     return sum(
